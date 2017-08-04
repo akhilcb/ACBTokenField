@@ -1,6 +1,6 @@
 # ACBTokenField <kbd><img src="/ACBTokenField/Resources/Assets.xcassets/AppIcon.appiconset/Icon-App-32x32@2x.png?raw=true" width="32"></kbd>
 
-A swift extension on NSTokenField which makes it highly customizable and removes a lot of boiler plate code from its implementation.
+A swift extension on NSTokenField which makes it highly customizable and removes a lot of boilerplate code from its implementation.
 
 ## Features
 
