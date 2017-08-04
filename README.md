@@ -5,7 +5,7 @@ A swift extension on NSTokenField which makes it highly customizable and removes
 ## Features
 
  - [x] Extension on NSTokenField, no need to subclass/or change anything in XIB/Storyboard
- - [x] Added few properties which makes it customizable such as shouldDisplayClearButton, shouldDisplaySearchIcon, leftView, shouldEnableTokenMenu etc.. 
+ - [x] Added few properties which makes it customizable such as `shouldDisplayClearButton`, `shouldDisplaySearchIcon`, `leftView`, `shouldEnableTokenMenu` etc.. 
  - [x] No need to implement delegate methods for simpler use cases. Just set an array of token names list or provide a default list of tokens for all indeces. Rest will be handled by `NSTokenField`. See demo provided below(1 - 3).
  - [x] Supports `NSTokenFieldDelegate` as well with the customization. Just set `tokenDelegate` and implement the methods(see gif4) as usual. 
  - [x] Added support for getting `selectedTokenIndex` so that tokens can be customized based on the index. `tokenIndex` provided in `NSTokenFieldDelegate` method has a bug and hence always returns zero. `selectedTokenIndex` will help in the meantime.
@@ -52,6 +52,32 @@ Set an array as shown above and it will show suggestions/menu based on the list 
 This will show default suggestions and token menu for all other tokens in tokenField whose index is not specified in `tokenKeywordsList`.
 
 You can also set `leftView` property of token field to any `NSView` or subclass of `NSView`. For eg:- you can add an `NSButton` as `leftView` and have an action to set to it(See gif5).
+
+#### Setting properties
+
+    //set any required properties
+    tokenField.shouldEnableTokenMenu = true
+    tokenField.tokenDelegate = self
+    tokenField.leftView = lockButton
+        
+#### Implement delegate
+
+    public func tokenField(_ tokenField: NSTokenField, completionsForSubstring substring: String, indexOfToken tokenIndex: Int, indexOfSelectedItem selectedIndex: UnsafeMutablePointer<Int>?) -> [Any]? {
+        switch tokenIndex {
+            case 0:
+                return actors
+            case 1:
+                return actresses
+            case 2:
+                return movies
+            case 3:
+                return years
+            default:
+                return nil
+        }
+    }
+
+
 
 ## Screenshots
 <kbd><div><img src="/ACBTokenField/Screenshots/ACBTokenFieldImage1.png?raw=true" width="800"></div></kbd>
