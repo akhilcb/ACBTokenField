@@ -95,7 +95,14 @@ extension NSTokenField {
         set { associate(key: &Keys.shouldDisplaySearchIcon, value: newValue)
             if !newValue {
                 self.leftView = nil
+                if let cell = self.cell as? ACBTokenFieldCell {
+                    cell.shouldDisplayLeftView = false
+                }
             } else if self.leftView == nil {
+                if let cell = self.cell as? ACBTokenFieldCell {
+                    cell.shouldDisplayLeftView = true
+                }
+                
                 //if left view is present, dont change it
                 self.setupSearchIconView()
             }
@@ -189,6 +196,7 @@ extension NSTokenField {
         
         let cell = ACBTokenFieldCell(textCell: "")
         cell.padding = viewPadding
+        self.cell = nil
         self.cell = cell
         self.isBordered = isBorderedTemp
         self.backgroundColor = backgroundColorTemp
