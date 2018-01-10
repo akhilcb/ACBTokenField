@@ -40,13 +40,6 @@
 			remoteGlobalIDString = E9F939ED1F2EB1AF0004AC10;
 			remoteInfo = ACBTokenField;
 		};
-		E91DF629200603D80099939B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9F939E61F2EB1AF0004AC10 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E91DF615200603D70099939B;
-			remoteInfo = ACBTokenFieldFramework;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -284,7 +277,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E91DF62A200603D80099939B /* PBXTargetDependency */,
 			);
 			name = ACBTokenField;
 			productName = ACBTokenField;
@@ -406,11 +398,6 @@
 			isa = PBXTargetDependency;
 			target = E9F939ED1F2EB1AF0004AC10 /* ACBTokenField */;
 			targetProxy = E91DF622200603D80099939B /* PBXContainerItemProxy */;
-		};
-		E91DF62A200603D80099939B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E91DF615200603D70099939B /* ACBTokenFieldFramework */;
-			targetProxy = E91DF629200603D80099939B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
