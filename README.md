@@ -27,6 +27,24 @@ A swift extension on NSTokenField which makes it highly customizable and removes
 
 <div><br></div>
 
+## Setup
+
+Carthage or Cocoapods can be used to integrate this to a project. 
+
+### Carthage
+
+```
+github "akhilcb/ACBTokenField" ~> 2.0
+
+```
+
+### Cocoapods
+
+```
+pod 'ACBTokenField'
+
+```
+
 ## Quick start
 Inorder to implement this in a project just copy the files `NSTokenField+ACBExtension.swift`, `ACBAssociation.swift`, `ACBToken.swift`and invoke the following function on any `NSTokenField`. As mentioned above, no need to subclass or change anything in XIB or Storyboard file
 
