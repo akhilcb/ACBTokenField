@@ -30,7 +30,7 @@ extension NSTokenField {
     
     // # MARK: Public stored property
     
-    var defaultTokenKeywords: [String]? {
+    public var defaultTokenKeywords: [String]? {
         get { return associated(key: &Keys.defaultTokenKeywords) ?? nil }
         set {
             associate(key: &Keys.defaultTokenKeywords, value: newValue)
@@ -38,7 +38,7 @@ extension NSTokenField {
         }
     }
     
-    var tokenKeywordsList: [[String]]? {
+    public var tokenKeywordsList: [[String]]? {
         get { return associated(key: &Keys.tokenKeywordsList) ?? nil }
         set {
             associate(key: &Keys.tokenKeywordsList, value: newValue)
@@ -46,7 +46,7 @@ extension NSTokenField {
         }
     }
     
-    var shouldEnableTokenMenu: Bool {
+    public var shouldEnableTokenMenu: Bool {
         get { return associated(key: &Keys.shouldEnableTokenMenu) { false }! }
         set { associate(key: &Keys.shouldEnableTokenMenu, value: newValue)
             if let _ = self.cell as? ACBTokenFieldCell {
@@ -55,12 +55,12 @@ extension NSTokenField {
         }
     }
     
-    var tokenDelegate: NSTokenFieldDelegate? {
+    public var tokenDelegate: NSTokenFieldDelegate? {
         get { return associated(key: &Keys.tokenDelegate) ?? nil }
         set { associate(key: &Keys.tokenDelegate, value: newValue) }
     }
     
-    var leftView: NSView? {
+    public var leftView: NSView? {
         get { return associated(key: &Keys.leftView) ?? nil }
         set {
             if let oldView: NSView = associated(key: &Keys.leftView) {
@@ -79,7 +79,7 @@ extension NSTokenField {
         }
     }
     
-    var shouldDisplayClearButton: Bool {
+    public var shouldDisplayClearButton: Bool {
         get { return associated(key: &Keys.shouldDisplayClearButton) { true }! }
         set { associate(key: &Keys.shouldDisplayClearButton, value: newValue)
             if let cell = self.cell as? ACBTokenFieldCell {
@@ -90,7 +90,7 @@ extension NSTokenField {
         }
     }
     
-    var shouldDisplaySearchIcon: Bool {
+    public var shouldDisplaySearchIcon: Bool {
         get { return associated(key: &Keys.shouldDisplaySearchIcon) { false }! }
         set { associate(key: &Keys.shouldDisplaySearchIcon, value: newValue)
             if !newValue {
@@ -109,12 +109,12 @@ extension NSTokenField {
         }
     }
     
-    var clearIconName: String {
+    public var clearIconName: String {
         get { return associated(key: &Keys.clearIconName) { "ClearDarkGray" }! }
         set { associate(key: &Keys.clearIconName, value: newValue) }
     }
     
-    var searchIconName: String {
+    public var searchIconName: String {
         get { return associated(key: &Keys.searchIconName) { "Glass" }! }
         set { associate(key: &Keys.searchIconName, value: newValue) }
     }
@@ -122,7 +122,7 @@ extension NSTokenField {
     
     // # MARK: Public computed property
     
-    var tokenStringValue: String {
+    public var tokenStringValue: String {
         var string = ""
         if let tokens = self.objectValue as? [ACBToken] {
             let stringList = tokens.map { $0.name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
@@ -171,7 +171,7 @@ extension NSTokenField {
             self.clearButton.isHidden = true
         } else {
             let string = self.currentEditor()?.string ?? ""
-            self.clearButton.isHidden = (string.characters.count == 0)
+            self.clearButton.isHidden = (string.count == 0)
         }
     }
     
@@ -231,7 +231,7 @@ extension NSTokenField {
     
     // # MARK: Public method
     
-    open func convertToACBTokenField() {
+    public func convertToACBTokenField() {
         tokenFieldController.tokenField = self
         setupCellToField()
         
@@ -250,7 +250,7 @@ extension NSTokenField {
         self.delegate = tokenFieldController
     }
     
-    open func addToken(name: String) {
+    public func addToken(name: String) {
         var currentTokens: [ACBToken]
         if let array = self.objectValue as? [ACBToken] {
             currentTokens = array
@@ -264,12 +264,12 @@ extension NSTokenField {
         self.objectValue = currentTokens
         
         if let fieldEditor = self.currentEditor() {
-            fieldEditor.selectedRange = NSMakeRange(fieldEditor.string?.characters.count ?? 0, 0)
+            fieldEditor.selectedRange = NSMakeRange(fieldEditor.string?.count ?? 0, 0)
         }
     }
     
     //calculate token index based on currentEditor's selectedRange and string
-    open func selectedTokenIndex() -> Int? {
+    public func selectedTokenIndex() -> Int? {
         var tokenIndex = 0
         let selectedRange = self.currentEditor()?.selectedRange
         let rangeLocation = selectedRange?.location ?? 0
@@ -290,7 +290,7 @@ extension NSTokenField {
         return tokenIndex
     }
     
-    open func tokenIndex(forRepresentedObject representedObject: Any) -> Int? {
+    public func tokenIndex(forRepresentedObject representedObject: Any) -> Int? {
         guard let token = representedObject as? ACBToken else {
             
             return nil
@@ -302,7 +302,7 @@ extension NSTokenField {
         return tokenIndex
     }
     
-    open func resetTokens() {
+    public func resetTokens() {
         self.objectValue = nil
         self.objectValue = self.tokens
     }
@@ -538,7 +538,7 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
             let textRange = fieldEditor.selectedRange
             let replaceString = menuItem.title
             fieldEditor.replaceCharacters(in: textRange, with: replaceString)
-            fieldEditor.selectedRange = NSMakeRange(textRange.location, replaceString.characters.count)
+            fieldEditor.selectedRange = NSMakeRange(textRange.location, replaceString.count)
         }
     }
     

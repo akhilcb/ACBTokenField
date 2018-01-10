@@ -107,7 +107,7 @@ class ViewController: NSViewController {
             let textRange = fieldEditor.selectedRange
             let replaceString = menuItem.title
             fieldEditor.replaceCharacters(in: textRange, with: replaceString)
-            fieldEditor.selectedRange = NSMakeRange(textRange.location, replaceString.characters.count)
+            fieldEditor.selectedRange = NSMakeRange(textRange.location, replaceString.count)
         }
     }
     
