@@ -150,9 +150,10 @@ extension NSTokenField {
     fileprivate var clearButton: NSButton {
         get {
             return associated(key: &Keys.clearButton) {
-                let button = NSButton(image: NSImage(named: self.clearIconName)!,
-                                      target: self,
-                                      action: #selector(self.clearButtonTapped(_:)))
+                let button = NSButton()
+                button.image = NSImage(named: self.clearIconName)
+                button.target = self
+                button.action = #selector(self.clearButtonTapped(_:))
                 button.setButtonType(NSButtonType.momentaryChange)
                 button.isBordered = false
                 return button
@@ -216,7 +217,8 @@ extension NSTokenField {
     }
     
     private func setupSearchIconView() {
-        let searchImageView = NSImageView(image: NSImage(named: self.searchIconName)!)
+        let searchImageView = NSImageView()
+        searchImageView.image = NSImage(named: self.searchIconName)
         self.leftView = searchImageView
     }
     
