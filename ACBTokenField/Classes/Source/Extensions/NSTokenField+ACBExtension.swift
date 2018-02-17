@@ -25,10 +25,19 @@ extension NSTokenField {
         static fileprivate var shouldDisplaySearchIcon: UInt8 = 0
         static fileprivate var clearIconName: UInt8 = 0
         static fileprivate var searchIconName: UInt8 = 0
+        static fileprivate var didDeleteTokenBlock: UInt8 = 0
     }
     
     
     // # MARK: Public stored property
+    
+    public var didDeleteTokenBlock: ((NSInteger, NSTokenField) -> ())? {
+        get { return associated(key: &Keys.didDeleteTokenBlock) ?? nil }
+        set {
+            associate(key: &Keys.didDeleteTokenBlock, value: newValue)
+            self.tokenFieldController.didDeleteTokenBlock = newValue
+        }
+    }
     
     public var defaultTokenKeywords: [String]? {
         get { return associated(key: &Keys.defaultTokenKeywords) ?? nil }
@@ -323,6 +332,9 @@ extension NSTokenField {
         self.objectValue = self.tokens
     }
     
+    public var tokenCount: Int {
+        return self.tokenFieldController.tokenCount()
+    }
 }
 
 
@@ -331,6 +343,9 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
     fileprivate weak var tokenField: NSTokenField?
     fileprivate var tokenMenuList: [NSMenu]?
     fileprivate var defaultTokenMenu: NSMenu?
+    fileprivate var didDeleteTokenBlock: ((NSInteger, NSTokenField) -> ())?
+    
+    private var prevTokenCount: Int = 0
     
 //TODO: This doesn't work due to a swift compiler issue since tokenField is weak
 //    private static var tokenContext = 0
@@ -383,9 +398,27 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         return super.responds(to: aSelector)
     }
     
+    override func controlTextDidBeginEditing(_ obj: Notification) {
+        prevTokenCount = tokenCount()
+    }
     
     override func controlTextDidChange(_ obj: Notification) {
         tokenField?.handleClearButton()
+        
+        DispatchQueue.main.async { [weak self] in 
+            if let tokenField = self?.tokenField,
+                let prevCount = self?.prevTokenCount,
+                let newCount = self?.tokenCount() {
+                if prevCount > newCount {
+                    var selIndex = newCount
+                    if let selectedIndex = tokenField.selectedTokenIndex() {
+                        selIndex = selectedIndex
+                    }
+                    self?.didDeleteTokenBlock?(selIndex, tokenField)
+                }
+                self?.prevTokenCount = newCount
+            }
+        }
     }
     
     
@@ -558,6 +591,20 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         }
     }
     
+    fileprivate func tokenCount() -> Int {
+        var newCount: Int = 0
+        
+        if let string = tokenField?.currentEditor()?.string as NSString? {
+            let maxIndex = string.length
+            for i in 0..<maxIndex {
+                if string.character(at: i) == unichar(NSAttachmentCharacter) {
+                    newCount += 1
+                }
+            }
+        }
+        
+        return newCount
+    }
     
     // # MARK: FilePrivate methods
     

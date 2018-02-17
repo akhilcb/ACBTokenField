@@ -85,6 +85,14 @@ class ViewController: NSViewController {
         tokenFieldMovie.shouldEnableTokenMenu = true
         tokenFieldMovie.tokenDelegate = self
         tokenFieldMovie.leftView = button
+        
+        tokenFieldRandom.didDeleteTokenBlock = { (tokenIndex, _) in
+            print("Random: Token at index = ", tokenIndex, "is removed")
+        }
+        
+        tokenFieldMovie.didDeleteTokenBlock = { (tokenIndex, _) in
+            print("Movie: Token at index = ", tokenIndex, "is removed")
+        }
     }
     
     
