@@ -29,7 +29,16 @@ class ViewController: NSViewController {
     var moviesMenu = NSMenu()
     var yearsMenu = NSMenu()
     
-    let imageView = NSImageView(image: NSImage(named: "Lock")!)
+    lazy var imageView: NSImageView = {
+        if #available(OSX 10.12, *) {
+            return NSImageView(image: NSImage(named: "Lock")!)
+        } else {
+            // Fallback on earlier versions
+            let imageView = NSImageView()
+            imageView.image = NSImage(named: "Lock")!
+            return imageView
+        }
+    }()
     
     
     // #MARK: Override
@@ -38,9 +47,18 @@ class ViewController: NSViewController {
         super.viewDidLoad()
     
         setupViews()
-        let button = NSButton(image: NSImage(named: "Lock")!,
+        var button: NSButton!
+        if #available(OSX 10.12, *) {
+            button = NSButton(image: NSImage(named: "Lock")!,
                               target: self,
                               action: #selector(self.lockButtonTapped(_:)))
+        } else {
+            // Fallback on earlier versions
+            button = NSButton()
+            button.image = NSImage(named: "Lock")!
+            button.target = self
+            button.action = #selector(self.lockButtonTapped(_:))
+        }
         button.setButtonType(NSButtonType.momentaryChange)
         button.isBordered = false
         
