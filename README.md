@@ -17,6 +17,8 @@ A swift extension on NSTokenField which makes it highly customizable and removes
  - [x] Added support for getting `selectedTokenIndex` so that tokens can be customized based on the index. `tokenIndex` provided in `NSTokenFieldDelegate` method has a bug and hence always returns zero. `selectedTokenIndex` will help in the meantime.
  - [x] Support for adding tokens
  - [x] Support for resetting tokens
+ - [x] Support for delete token callback
+ - [x] Support for getting actual token count
  - [x] Get `tokenIndex` based on the `representedObject` param in delegate methods.
  
 ## Demo
@@ -40,14 +42,14 @@ Carthage or Cocoapods can be used to integrate this to a project.
 ### Carthage
 
 ```
-github "akhilcb/ACBTokenField" ~> 2.1
+github "akhilcb/ACBTokenField" ~> 2.2
 
 ```
 
 ### Cocoapods
 
 ```
-pod 'ACBTokenField', '~> 2.1'
+pod 'ACBTokenField', '~> 2.2'
 
 ```
 
@@ -83,6 +85,10 @@ You can also set `leftView` property of token field to any `NSView` or subclass 
     tokenField.shouldEnableTokenMenu = true
     tokenField.tokenDelegate = self
     tokenField.leftView = lockButton
+    
+    tokenField.didDeleteTokenBlock = { (tokenIndex, _) in
+        print("Token at index = ", tokenIndex, "is removed")
+    }
         
 #### Implement delegate
 
