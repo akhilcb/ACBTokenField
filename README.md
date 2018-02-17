@@ -34,14 +34,14 @@ Carthage or Cocoapods can be used to integrate this to a project.
 ### Carthage
 
 ```
-github "akhilcb/ACBTokenField" ~> 2.0
+github "akhilcb/ACBTokenField" ~> 2.1
 
 ```
 
 ### Cocoapods
 
 ```
-pod 'ACBTokenField'
+pod 'ACBTokenField', '~> 2.1'
 
 ```
 
