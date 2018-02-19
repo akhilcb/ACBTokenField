@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.author    	 = "Akhil"
   s.platform     = :osx, '10.10'
   s.source       = { :git => "https://github.com/akhilcb/ACBTokenField.git", :tag => "2.3.0" }
-  s.source_files  = "ACBTokenField", "ACBTokenField/Classes/Source/**/*.{swift}"
+  s.source_files  = "ACBTokenField", "Sources/ACBTokenField/**/*.{swift}"
   s.resources = "ACBTokenField/Resources/Assets.xcassets"
 end
