@@ -11,12 +11,12 @@
 		E91DF626200603D80099939B /* ACBTokenFieldFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF625200603D80099939B /* ACBTokenFieldFrameworkTests.swift */; };
 		E91DF628200603D80099939B /* ACBTokenFieldFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E91DF618200603D70099939B /* ACBTokenFieldFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E91DF6382006043B0099939B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C94E811F326E7600CC8573 /* Assets.xcassets */; };
-		E91DF64020060C6A0099939B /* ACBToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF63B20060C6A0099939B /* ACBToken.swift */; };
-		E91DF64120060C6A0099939B /* ACBToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF63B20060C6A0099939B /* ACBToken.swift */; };
-		E91DF64220060C6A0099939B /* NSTokenField+ACBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF63D20060C6A0099939B /* NSTokenField+ACBExtension.swift */; };
-		E91DF64320060C6A0099939B /* NSTokenField+ACBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF63D20060C6A0099939B /* NSTokenField+ACBExtension.swift */; };
-		E91DF64420060C6A0099939B /* ACBAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF63F20060C6A0099939B /* ACBAssociation.swift */; };
-		E91DF64520060C6A0099939B /* ACBAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF63F20060C6A0099939B /* ACBAssociation.swift */; };
+		E9856BA1203B8A63009EA867 /* ACBToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9856B9C203B8A63009EA867 /* ACBToken.swift */; };
+		E9856BA2203B8A63009EA867 /* NSTokenField+ACBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9856B9E203B8A63009EA867 /* NSTokenField+ACBExtension.swift */; };
+		E9856BA3203B8A63009EA867 /* ACBAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9856BA0203B8A63009EA867 /* ACBAssociation.swift */; };
+		E9856BA4203B8A68009EA867 /* ACBToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9856B9C203B8A63009EA867 /* ACBToken.swift */; };
+		E9856BA5203B8A6C009EA867 /* NSTokenField+ACBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9856B9E203B8A63009EA867 /* NSTokenField+ACBExtension.swift */; };
+		E9856BA6203B8A6F009EA867 /* ACBAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9856BA0203B8A63009EA867 /* ACBAssociation.swift */; };
 		E9C94E821F326E7600CC8573 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C94E811F326E7600CC8573 /* Assets.xcassets */; };
 		E9F93A061F2ED2020004AC10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F93A021F2ED2020004AC10 /* ViewController.swift */; };
 		E9F93A071F2ED2020004AC10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F93A051F2ED2020004AC10 /* AppDelegate.swift */; };
@@ -47,9 +47,9 @@
 		E91DF61E200603D80099939B /* ACBTokenFieldFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACBTokenFieldFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91DF625200603D80099939B /* ACBTokenFieldFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBTokenFieldFrameworkTests.swift; sourceTree = "<group>"; };
 		E91DF627200603D80099939B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E91DF63B20060C6A0099939B /* ACBToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACBToken.swift; sourceTree = "<group>"; };
-		E91DF63D20060C6A0099939B /* NSTokenField+ACBExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTokenField+ACBExtension.swift"; sourceTree = "<group>"; };
-		E91DF63F20060C6A0099939B /* ACBAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACBAssociation.swift; sourceTree = "<group>"; };
+		E9856B9C203B8A63009EA867 /* ACBToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACBToken.swift; sourceTree = "<group>"; };
+		E9856B9E203B8A63009EA867 /* NSTokenField+ACBExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTokenField+ACBExtension.swift"; sourceTree = "<group>"; };
+		E9856BA0203B8A63009EA867 /* ACBAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACBAssociation.swift; sourceTree = "<group>"; };
 		E9C94E811F326E7600CC8573 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9F939EE1F2EB1AF0004AC10 /* ACBTokenField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACBTokenField.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F93A021F2ED2020004AC10 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,37 +102,44 @@
 			path = ACBTokenFieldFrameworkTests;
 			sourceTree = "<group>";
 		};
-		E91DF63920060C6A0099939B /* Source */ = {
+		E9856B99203B8A63009EA867 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E91DF63A20060C6A0099939B /* Models */,
-				E91DF63C20060C6A0099939B /* Extensions */,
-				E91DF63E20060C6A0099939B /* Helpers */,
+				E9856B9A203B8A63009EA867 /* ACBTokenField */,
 			);
-			name = Source;
-			path = Classes/Source;
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		E9856B9A203B8A63009EA867 /* ACBTokenField */ = {
+			isa = PBXGroup;
+			children = (
+				E9856B9B203B8A63009EA867 /* Models */,
+				E9856B9D203B8A63009EA867 /* Extensions */,
+				E9856B9F203B8A63009EA867 /* Helpers */,
+			);
+			path = ACBTokenField;
 			sourceTree = "<group>";
 		};
-		E91DF63A20060C6A0099939B /* Models */ = {
+		E9856B9B203B8A63009EA867 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E91DF63B20060C6A0099939B /* ACBToken.swift */,
+				E9856B9C203B8A63009EA867 /* ACBToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E91DF63C20060C6A0099939B /* Extensions */ = {
+		E9856B9D203B8A63009EA867 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E91DF63D20060C6A0099939B /* NSTokenField+ACBExtension.swift */,
+				E9856B9E203B8A63009EA867 /* NSTokenField+ACBExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E91DF63E20060C6A0099939B /* Helpers */ = {
+		E9856B9F203B8A63009EA867 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				E91DF63F20060C6A0099939B /* ACBAssociation.swift */,
+				E9856BA0203B8A63009EA867 /* ACBAssociation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -161,7 +168,7 @@
 		E9F939F01F2EB1AF0004AC10 /* ACBTokenField */ = {
 			isa = PBXGroup;
 			children = (
-				E91DF63920060C6A0099939B /* Source */,
+				E9856B99203B8A63009EA867 /* Sources */,
 				E9F93A041F2ED2020004AC10 /* General */,
 				E9F93A011F2ED2020004AC10 /* ViewControllers */,
 			);
@@ -342,9 +349,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91DF64120060C6A0099939B /* ACBToken.swift in Sources */,
-				E91DF64320060C6A0099939B /* NSTokenField+ACBExtension.swift in Sources */,
-				E91DF64520060C6A0099939B /* ACBAssociation.swift in Sources */,
+				E9856BA5203B8A6C009EA867 /* NSTokenField+ACBExtension.swift in Sources */,
+				E9856BA6203B8A6F009EA867 /* ACBAssociation.swift in Sources */,
+				E9856BA4203B8A68009EA867 /* ACBToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,10 +368,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F93A071F2ED2020004AC10 /* AppDelegate.swift in Sources */,
-				E91DF64420060C6A0099939B /* ACBAssociation.swift in Sources */,
-				E91DF64020060C6A0099939B /* ACBToken.swift in Sources */,
 				E9F93A061F2ED2020004AC10 /* ViewController.swift in Sources */,
-				E91DF64220060C6A0099939B /* NSTokenField+ACBExtension.swift in Sources */,
+				E9856BA2203B8A63009EA867 /* NSTokenField+ACBExtension.swift in Sources */,
+				E9856BA3203B8A63009EA867 /* ACBAssociation.swift in Sources */,
+				E9856BA1203B8A63009EA867 /* ACBToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
