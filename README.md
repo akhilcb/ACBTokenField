@@ -1,7 +1,9 @@
 # ACBTokenField <kbd><img src="/ACBTokenField/Resources/Assets.xcassets/AppIcon.appiconset/Icon-App-32x32@2x.png?raw=true" width="32"></kbd>
 
+[![Swift 3.2](https://img.shields.io/badge/Swift-3.2-orange.svg)](https://github.com/akhilcb/ACBTokenField)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/ACBTokenField.svg)](https://img.shields.io/cocoapods/v/ACBTokenField.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
 [![Platform](https://img.shields.io/cocoapods/p/ACBTokenField.svg?style=flat)](https://github.com/akhilcb/ACBTokenField)
 [![License](https://img.shields.io/cocoapods/l/ACBTokenField.svg?style=flat)](http://cocoapods.org/pods/ACBTokenField)
 
@@ -37,20 +39,28 @@ A swift extension on NSTokenField which makes it highly customizable and removes
 
 ## Setup
 
-Carthage or Cocoapods can be used to integrate this to a project. 
+Carthage, Cocoapods or Swift Package Manager can be used to integrate this to a project. 
 
 ### Carthage
 
 ```
-github "akhilcb/ACBTokenField" ~> 2.2
+github "akhilcb/ACBTokenField" ~> 2.3.0
 
 ```
 
 ### Cocoapods
 
 ```
-pod 'ACBTokenField', '~> 2.2'
+pod 'ACBTokenField', '~> 2.3.0'
 
+```
+
+### Swift Package Manager
+
+```
+dependencies: [
+    .Package(url: "https://github.com/akhilcb/ACBTokenField.git", majorVersion: 2)
+]
 ```
 
 ## Quick start
