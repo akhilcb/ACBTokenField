@@ -171,7 +171,7 @@ extension NSTokenField {
                     button.target = self
                     button.action = #selector(self.clearButtonTapped(_:))
                 }
-                button.setButtonType(NSButtonType.momentaryChange)
+                button.setButtonType(NSButton.ButtonType.momentaryChange)
                 button.isBordered = false
                 return button
                 }!
@@ -246,10 +246,10 @@ extension NSTokenField {
     }
     
     private func setupConstraintOnClearButton() {
-        let rightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0)
-        let verticalConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        let widthConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: viewPadding)
-        let heightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: viewPadding)
+        let rightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 0)
+        let verticalConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: viewPadding)
+        let heightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: viewPadding)
         self.addConstraints([rightConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
     
@@ -288,8 +288,8 @@ extension NSTokenField {
         
         self.objectValue = currentTokens
         
-        if let fieldEditor = self.currentEditor() {
-            fieldEditor.selectedRange = NSMakeRange(fieldEditor.string?.count ?? 0, 0)
+        if let fieldEditor = currentEditor() {
+            fieldEditor.selectedRange = NSMakeRange(fieldEditor.string.count, 0)
         }
     }
     
@@ -304,7 +304,7 @@ extension NSTokenField {
             let maxIndex = subString.length
             
             for i in 0..<maxIndex {
-                if subString.character(at: i) == unichar(NSAttachmentCharacter) {
+                if subString.character(at: i) == unichar(NSTextAttachment.character) {
                     tokenIndex += 1
                 }
             }
@@ -398,11 +398,11 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         return super.responds(to: aSelector)
     }
     
-    override func controlTextDidBeginEditing(_ obj: Notification) {
+    func controlTextDidBeginEditing(_ obj: Notification) {
         prevTokenCount = tokenCount()
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         tokenField?.handleClearButton()
         
         DispatchQueue.main.async { [weak self] in 
@@ -522,10 +522,8 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
     
     
     func tokenField(_ tokenField: NSTokenField,
-                    representedObjectForEditing editingString: String) -> Any {
-        let token = ACBToken(name: editingString)
-        
-        return token
+                    representedObjectForEditing editingString: String) -> (Any)? {
+        return ACBToken(name: editingString)
     }
     
     
@@ -573,11 +571,11 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         
         if let token = representedObject as? ACBToken {
             tokenMenu.items.forEach { menuItem in
-                menuItem.state = (menuItem.title == token.name) ? NSOnState : NSOffState
+                menuItem.state = (menuItem.title == token.name) ? .on : .off
             }
         } else if let token = representedObject as? String {
             tokenMenu.items.forEach { menuItem in
-                menuItem.state = (menuItem.title == token) ? NSOnState : NSOffState
+                menuItem.state = (menuItem.title == token) ? .on : .off
             }
         }
     }
@@ -597,7 +595,7 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         if let string = tokenField?.currentEditor()?.string as NSString? {
             let maxIndex = string.length
             for i in 0..<maxIndex {
-                if string.character(at: i) == unichar(NSAttachmentCharacter) {
+                if string.character(at: i) == unichar(NSTextAttachment.character) {
                     newCount += 1
                 }
             }
