@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class ACBToken: NSObject, NSCoding {
+public class ACBToken: NSObject, NSCoding {
     
     // # MARK: Public
     
-    var name: String
+    public var name: String
     
     // # MARK: Public Method
     
