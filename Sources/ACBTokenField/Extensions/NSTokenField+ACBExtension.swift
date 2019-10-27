@@ -338,7 +338,7 @@ extension NSTokenField {
     
     public func resetTokens() {
         self.objectValue = nil
-        self.objectValue = self.tokens
+        self.tokens = []
     }
     
     public var tokenCount: Int {
