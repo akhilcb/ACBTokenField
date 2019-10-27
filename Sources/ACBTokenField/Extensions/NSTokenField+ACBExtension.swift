@@ -207,7 +207,8 @@ extension NSTokenField {
             self.clearButton.isHidden = true
         } else {
             let string = self.currentEditor()?.string ?? ""
-            self.clearButton.isHidden = (string.count == 0)
+            let tokens = (objectValue as? [ACBToken] ?? [])
+            self.clearButton.isHidden = (string.count == 0) && tokens.count == 0
         }
     }
     
@@ -310,6 +311,8 @@ extension NSTokenField {
         if let fieldEditor = currentEditor() {
             fieldEditor.selectedRange = NSMakeRange(fieldEditor.string.count, 0)
         }
+        
+        handleClearButton()
     }
     
     //calculate token index based on currentEditor's selectedRange and string
