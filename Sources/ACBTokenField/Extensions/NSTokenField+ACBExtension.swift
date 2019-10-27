@@ -27,6 +27,7 @@ extension NSTokenField {
         static fileprivate var searchIconName: UInt8 = 0
         static fileprivate var didDeleteTokenBlock: UInt8 = 0
         static fileprivate var didAddTokenBlock: UInt8 = 0
+        static fileprivate var didClearTokensBlock: UInt8 = 0
     }
     
     
@@ -45,6 +46,14 @@ extension NSTokenField {
         set {
             associate(key: &Keys.didAddTokenBlock, value: newValue)
             self.tokenFieldController.didAddTokenBlock = newValue
+        }
+    }
+    
+    public var didClearTokensBlock: (() -> ())? {
+        get { return associated(key: &Keys.didClearTokensBlock) ?? nil }
+        set {
+            associate(key: &Keys.didClearTokensBlock, value: newValue)
+            self.tokenFieldController.didClearTokensBlock = newValue
         }
     }
     
@@ -208,6 +217,7 @@ extension NSTokenField {
     @objc private func clearButtonTapped(_ sender: Any?) {
         self.stringValue = ""
         handleClearButton()
+        didClearTokensBlock?()
     }
     
     private func setupCellToField() {
@@ -354,6 +364,7 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
     fileprivate var defaultTokenMenu: NSMenu?
     fileprivate var didDeleteTokenBlock: ((NSInteger, NSTokenField) -> ())?
     fileprivate var didAddTokenBlock: ((NSInteger, NSTokenField) -> ())?
+    fileprivate var didClearTokensBlock: (() -> ())?
     
     private var prevTokenCount: Int = 0
     
