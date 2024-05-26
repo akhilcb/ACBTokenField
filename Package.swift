@@ -15,5 +15,5 @@ let package = Package(
             name: "ACBTokenField",
             dependencies: [])
         ],
-    swiftLanguageVersions: [3]
+    swiftLanguageVersions: [5]
 )
