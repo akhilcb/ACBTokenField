@@ -77,7 +77,7 @@ extension NSTokenField {
         get { return associated(key: &Keys.shouldEnableTokenMenu) { false }! }
         set { associate(key: &Keys.shouldEnableTokenMenu, value: newValue)
             if let _ = self.cell as? ACBTokenFieldCell {
-                self.setNeedsDisplay()
+                self.needsDisplay = true
             }
         }
     }
@@ -101,7 +101,7 @@ extension NSTokenField {
                     newView.frame = CGRect(x: 0, y: 0, width: 21, height: 21)
                     self.addSubview(newView)
                 }
-                self.setNeedsDisplay()
+                self.needsDisplay = true
             }
         }
     }
@@ -111,7 +111,7 @@ extension NSTokenField {
         set { associate(key: &Keys.shouldDisplayClearButton, value: newValue)
             if let cell = self.cell as? ACBTokenFieldCell {
                 cell.shouldDisplayClearButton = newValue
-                self.setNeedsDisplay()
+                self.needsDisplay = true
             }
             self.handleClearButton()
         }
@@ -344,7 +344,7 @@ extension NSTokenField {
         }
         
         let tokens = self.tokens
-        let tokenIndex = tokens.index(of: token)
+        let tokenIndex = tokens.firstIndex(of: token)
         
         return tokenIndex
     }
@@ -371,33 +371,33 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
     
     private var prevTokenCount: Int = 0
     
-    //TODO: This doesn't work due to a swift compiler issue since tokenField is weak
-    //    private static var tokenContext = 0
-    
-    //    @objc var tokenField: NSTokenField? {
-    //        didSet {
-    //            setupObservers()
-    //        }
-    //    }
-    //
-    //    deinit {
-    //        removeObserver(self, forKeyPath: #keyPath(tokenField.delegate), context: &ACBTokenFieldController.tokenContext)
-    //    }
-    //
-    //    func setupObservers() {
-    //        self.addObserver(self, forKeyPath: #keyPath(tokenField.delegate), options: [.old, .new], context: &ACBTokenFieldController.tokenContext)
-    //    }
-    //
-    //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    //        if context == &ACBTokenFieldController.tokenContext {
-    //            if keyPath == #keyPath(tokenField.delegate) {
-    //                if (tokenField!.delegate is ACBTokenFieldController) == false {
-    //                    tokenField!.tokenDelegate = tokenField!.delegate
-    //                    tokenField!.delegate = self
-    //                }
-    //            }
-    //        }
-    //    }
+//TODO: This doesn't work due to a swift compiler issue since tokenField is weak
+//    private static var tokenContext = 0
+
+//    @objc var tokenField: NSTokenField? {
+//        didSet {
+//            setupObservers()
+//        }
+//    }
+//
+//    deinit {
+//        removeObserver(self, forKeyPath: #keyPath(tokenField.delegate), context: &ACBTokenFieldController.tokenContext)
+//    }
+//
+//    func setupObservers() {
+//        self.addObserver(self, forKeyPath: #keyPath(tokenField.delegate), options: [.old, .new], context: &ACBTokenFieldController.tokenContext)
+//    }
+//
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if context == &ACBTokenFieldController.tokenContext {
+//            if keyPath == #keyPath(tokenField.delegate) {
+//                if (tokenField!.delegate is ACBTokenFieldController) == false {
+//                    tokenField!.tokenDelegate = tokenField!.delegate
+//                    tokenField!.delegate = self
+//                }
+//            }
+//        }
+//    }
     
     // # MARK: Forward Invocation methods
     
