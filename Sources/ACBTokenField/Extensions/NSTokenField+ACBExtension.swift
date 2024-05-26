@@ -26,6 +26,8 @@ extension NSTokenField {
         static fileprivate var clearIconName: UInt8 = 0
         static fileprivate var searchIconName: UInt8 = 0
         static fileprivate var didDeleteTokenBlock: UInt8 = 0
+        static fileprivate var didAddTokenBlock: UInt8 = 0
+        static fileprivate var didClearTokensBlock: UInt8 = 0
     }
     
     
@@ -36,6 +38,22 @@ extension NSTokenField {
         set {
             associate(key: &Keys.didDeleteTokenBlock, value: newValue)
             self.tokenFieldController.didDeleteTokenBlock = newValue
+        }
+    }
+    
+    public var didAddTokenBlock: ((NSInteger, NSTokenField) -> ())? {
+        get { return associated(key: &Keys.didAddTokenBlock) ?? nil }
+        set {
+            associate(key: &Keys.didAddTokenBlock, value: newValue)
+            self.tokenFieldController.didAddTokenBlock = newValue
+        }
+    }
+    
+    public var didClearTokensBlock: (() -> ())? {
+        get { return associated(key: &Keys.didClearTokensBlock) ?? nil }
+        set {
+            associate(key: &Keys.didClearTokensBlock, value: newValue)
+            self.tokenFieldController.didClearTokensBlock = newValue
         }
     }
     
@@ -162,8 +180,8 @@ extension NSTokenField {
                 var button: NSButton!
                 if #available(OSX 10.12, *) {
                     button = NSButton(image: NSImage(named: self.clearIconName)!,
-                                          target: self,
-                                          action: #selector(self.clearButtonTapped(_:)))
+                                      target: self,
+                                      action: #selector(self.clearButtonTapped(_:)))
                 } else {
                     // Fallback on earlier versions
                     button = NSButton()
@@ -171,25 +189,26 @@ extension NSTokenField {
                     button.target = self
                     button.action = #selector(self.clearButtonTapped(_:))
                 }
-                button.setButtonType(NSButtonType.momentaryChange)
+                button.setButtonType(NSButton.ButtonType.momentaryChange)
                 button.isBordered = false
                 return button
                 }!
         }
         set { associate(key: &Keys.clearButton, value: newValue) }
     }
-
+    
     fileprivate var viewPadding: CGFloat {
         get { return associated(key: &Keys.viewPadding) { 21 }! }
         set { associate(key: &Keys.viewPadding, value: newValue) }
     }
-
+    
     fileprivate func handleClearButton() {
         if shouldDisplayClearButton == false {
             self.clearButton.isHidden = true
         } else {
             let string = self.currentEditor()?.string ?? ""
-            self.clearButton.isHidden = (string.count == 0)
+            let tokens = (objectValue as? [ACBToken] ?? [])
+            self.clearButton.isHidden = (string.count == 0) && tokens.count == 0
         }
     }
     
@@ -199,8 +218,9 @@ extension NSTokenField {
     @objc private func clearButtonTapped(_ sender: Any?) {
         self.stringValue = ""
         handleClearButton()
+        didClearTokensBlock?()
     }
-
+    
     private func setupCellToField() {
         let isBorderedTemp  = self.isBordered
         let backgroundColorTemp = self.backgroundColor
@@ -246,10 +266,10 @@ extension NSTokenField {
     }
     
     private func setupConstraintOnClearButton() {
-        let rightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0)
-        let verticalConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        let widthConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: viewPadding)
-        let heightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: viewPadding)
+        let rightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 0)
+        let verticalConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: viewPadding)
+        let heightConstraint = NSLayoutConstraint(item: clearButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: viewPadding)
         self.addConstraints([rightConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
     
@@ -264,9 +284,9 @@ extension NSTokenField {
         let x = self.frame.size.width - viewPadding - 3
         let y = (self.frame.size.height - viewPadding) / 2
         clearButton.frame = CGRect(x: x,
-                                        y: y,
-                                        width: viewPadding,
-                                        height: viewPadding)
+                                   y: y,
+                                   width: viewPadding,
+                                   height: viewPadding)
         clearButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(clearButton)
         setupConstraintOnClearButton()
@@ -288,9 +308,11 @@ extension NSTokenField {
         
         self.objectValue = currentTokens
         
-        if let fieldEditor = self.currentEditor() {
-            fieldEditor.selectedRange = NSMakeRange(fieldEditor.string?.count ?? 0, 0)
+        if let fieldEditor = currentEditor() {
+            fieldEditor.selectedRange = NSMakeRange(fieldEditor.string.count, 0)
         }
+        
+        handleClearButton()
     }
     
     //calculate token index based on currentEditor's selectedRange and string
@@ -304,7 +326,7 @@ extension NSTokenField {
             let maxIndex = subString.length
             
             for i in 0..<maxIndex {
-                if subString.character(at: i) == unichar(NSAttachmentCharacter) {
+                if subString.character(at: i) == unichar(NSTextAttachment.character) {
                     tokenIndex += 1
                 }
             }
@@ -329,7 +351,7 @@ extension NSTokenField {
     
     public func resetTokens() {
         self.objectValue = nil
-        self.objectValue = self.tokens
+        self.tokens = []
     }
     
     public var tokenCount: Int {
@@ -344,36 +366,38 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
     fileprivate var tokenMenuList: [NSMenu]?
     fileprivate var defaultTokenMenu: NSMenu?
     fileprivate var didDeleteTokenBlock: ((NSInteger, NSTokenField) -> ())?
+    fileprivate var didAddTokenBlock: ((NSInteger, NSTokenField) -> ())?
+    fileprivate var didClearTokensBlock: (() -> ())?
     
     private var prevTokenCount: Int = 0
     
-//TODO: This doesn't work due to a swift compiler issue since tokenField is weak
-//    private static var tokenContext = 0
+    //TODO: This doesn't work due to a swift compiler issue since tokenField is weak
+    //    private static var tokenContext = 0
     
-//    @objc var tokenField: NSTokenField? {
-//        didSet {
-//            setupObservers()
-//        }
-//    }
-//    
-//    deinit {
-//        removeObserver(self, forKeyPath: #keyPath(tokenField.delegate), context: &ACBTokenFieldController.tokenContext)
-//    }
-//    
-//    func setupObservers() {
-//        self.addObserver(self, forKeyPath: #keyPath(tokenField.delegate), options: [.old, .new], context: &ACBTokenFieldController.tokenContext)
-//    }
-//    
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if context == &ACBTokenFieldController.tokenContext {
-//            if keyPath == #keyPath(tokenField.delegate) {
-//                if (tokenField!.delegate is ACBTokenFieldController) == false {
-//                    tokenField!.tokenDelegate = tokenField!.delegate
-//                    tokenField!.delegate = self
-//                }
-//            }
-//        }
-//    }
+    //    @objc var tokenField: NSTokenField? {
+    //        didSet {
+    //            setupObservers()
+    //        }
+    //    }
+    //
+    //    deinit {
+    //        removeObserver(self, forKeyPath: #keyPath(tokenField.delegate), context: &ACBTokenFieldController.tokenContext)
+    //    }
+    //
+    //    func setupObservers() {
+    //        self.addObserver(self, forKeyPath: #keyPath(tokenField.delegate), options: [.old, .new], context: &ACBTokenFieldController.tokenContext)
+    //    }
+    //
+    //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    //        if context == &ACBTokenFieldController.tokenContext {
+    //            if keyPath == #keyPath(tokenField.delegate) {
+    //                if (tokenField!.delegate is ACBTokenFieldController) == false {
+    //                    tokenField!.tokenDelegate = tokenField!.delegate
+    //                    tokenField!.delegate = self
+    //                }
+    //            }
+    //        }
+    //    }
     
     // # MARK: Forward Invocation methods
     
@@ -398,23 +422,23 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         return super.responds(to: aSelector)
     }
     
-    override func controlTextDidBeginEditing(_ obj: Notification) {
+    func controlTextDidBeginEditing(_ obj: Notification) {
         prevTokenCount = tokenCount()
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         tokenField?.handleClearButton()
         
-        DispatchQueue.main.async { [weak self] in 
+        DispatchQueue.main.async { [weak self] in
             if let tokenField = self?.tokenField,
                 let prevCount = self?.prevTokenCount,
                 let newCount = self?.tokenCount() {
                 if prevCount > newCount {
-                    var selIndex = newCount
-                    if let selectedIndex = tokenField.selectedTokenIndex() {
-                        selIndex = selectedIndex
-                    }
-                    self?.didDeleteTokenBlock?(selIndex, tokenField)
+                    let index = tokenField.selectedTokenIndex() ?? newCount
+                    self?.didDeleteTokenBlock?(index, tokenField)
+                } else if prevCount < newCount {
+                    let index = max(0, (tokenField.selectedTokenIndex() ?? newCount) - 1)
+                    self?.didAddTokenBlock?(index, tokenField)
                 }
                 self?.prevTokenCount = newCount
             }
@@ -444,15 +468,15 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         } else if let tokenDelegate = tokenField.tokenDelegate,
             tokenDelegate.responds(to: #selector(tokenField(_:completionsForSubstring:indexOfToken:indexOfSelectedItem:))) {
             if let tokenKeywords = tokenDelegate.tokenField!(tokenField,
-                                                           completionsForSubstring: substring,
-                                                           indexOfToken: newTokenIndex,
-                                                           indexOfSelectedItem: selectedIndex) as? [String] {
-            
+                                                             completionsForSubstring: substring,
+                                                             indexOfToken: newTokenIndex,
+                                                             indexOfSelectedItem: selectedIndex) as? [String] {
+                
                 let filtered = tokenKeywords.filter { $0.lowercased().hasPrefix(substring.lowercased()) }
                 return filtered
             }
         }
-
+        
         return nil
     }
     
@@ -522,10 +546,8 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
     
     
     func tokenField(_ tokenField: NSTokenField,
-                    representedObjectForEditing editingString: String) -> Any {
-        let token = ACBToken(name: editingString)
-        
-        return token
+                    representedObjectForEditing editingString: String) -> (Any)? {
+        return ACBToken(name: editingString)
     }
     
     
@@ -573,11 +595,11 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         
         if let token = representedObject as? ACBToken {
             tokenMenu.items.forEach { menuItem in
-                menuItem.state = (menuItem.title == token.name) ? NSOnState : NSOffState
+                menuItem.state = (menuItem.title == token.name) ? .on : .off
             }
         } else if let token = representedObject as? String {
             tokenMenu.items.forEach { menuItem in
-                menuItem.state = (menuItem.title == token) ? NSOnState : NSOffState
+                menuItem.state = (menuItem.title == token) ? .on : .off
             }
         }
     }
@@ -597,7 +619,7 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         if let string = tokenField?.currentEditor()?.string as NSString? {
             let maxIndex = string.length
             for i in 0..<maxIndex {
-                if string.character(at: i) == unichar(NSAttachmentCharacter) {
+                if string.character(at: i) == unichar(NSTextAttachment.character) {
                     newCount += 1
                 }
             }

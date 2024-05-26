@@ -59,7 +59,7 @@ class ViewController: NSViewController {
             button.target = self
             button.action = #selector(self.lockButtonTapped(_:))
         }
-        button.setButtonType(NSButtonType.momentaryChange)
+        button.setButtonType(.momentaryChange)
         button.isBordered = false
         
         tokenFieldRandom.placeholderString = "Enter tokens in following order: Country Food Animal Vehicle Color(this can repeat)"
@@ -104,10 +104,10 @@ class ViewController: NSViewController {
         setupMenu(moviesMenu, nameList: movies)
         setupMenu(yearsMenu, nameList: years)
         
-        enableTokenMenu.state = NSOnState
-        enableSearchIcon.state = NSOnState
-        setCustomLeftView.state = NSOffState
-        enableTokenMenu.state = NSOnState
+        enableTokenMenu.state = .on
+        enableSearchIcon.state = .on
+        setCustomLeftView.state = .off
+        enableTokenMenu.state = .on
     }
     
     private func setupMenu(_ menu: NSMenu, nameList: [String]) {
@@ -141,28 +141,28 @@ class ViewController: NSViewController {
     // #MARK: IBAction
     
     @IBAction func enableClearButton(_ sender: NSButton) {
-        tokenFieldRandom.shouldDisplayClearButton = sender.state == NSOnState
+        tokenFieldRandom.shouldDisplayClearButton = sender.state == .on
     }
 
     @IBAction func enableSearchIcon(_ sender: NSButton) {
-        if sender.state == NSOnState {
-            setCustomLeftView.state = NSOffState
+        if sender.state == .on {
+            setCustomLeftView.state = .off
             tokenFieldRandom.leftView = nil
         }
-        tokenFieldRandom.shouldDisplaySearchIcon = sender.state == NSOnState
+        tokenFieldRandom.shouldDisplaySearchIcon = sender.state == .on
     }
     
     @IBAction func setLeftView(_ sender: NSButton) {
-        if sender.state == NSOnState {
+        if sender.state == .on {
             tokenFieldRandom.leftView = imageView
-            enableSearchIcon.state = NSOffState
+            enableSearchIcon.state = .off
         } else {
             tokenFieldRandom.leftView = nil
         }
     }
     
     @IBAction func enableTokenMenu(_ sender: NSButton) {
-        tokenFieldRandom.shouldEnableTokenMenu = sender.state == NSOnState
+        tokenFieldRandom.shouldEnableTokenMenu = sender.state == .on
         tokenFieldRandom.resetTokens()
     }
     
@@ -179,8 +179,7 @@ class ViewController: NSViewController {
 
 extension ViewController: NSTokenFieldDelegate {
     
-     public func tokenField(_ tokenField: NSTokenField, styleForRepresentedObject representedObject: Any) -> NSTokenStyle {
-        
+    public func tokenField(_ tokenField: NSTokenField, styleForRepresentedObject representedObject: Any) -> NSTokenField.TokenStyle {
         return .rounded
     }
 
