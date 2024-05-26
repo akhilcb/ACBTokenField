@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E91DF61F200603D80099939B /* ACBTokenField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91DF616200603D70099939B /* ACBTokenField.framework */; };
-		E91DF626200603D80099939B /* ACBTokenFieldFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DF625200603D80099939B /* ACBTokenFieldFrameworkTests.swift */; };
 		E91DF628200603D80099939B /* ACBTokenFieldFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E91DF618200603D70099939B /* ACBTokenFieldFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E91DF6382006043B0099939B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C94E811F326E7600CC8573 /* Assets.xcassets */; };
 		E9856BA1203B8A63009EA867 /* ACBToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9856B9C203B8A63009EA867 /* ACBToken.swift */; };
@@ -23,28 +21,10 @@
 		E9F93A0E1F2ED34F0004AC10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F93A0A1F2ED34F0004AC10 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E91DF620200603D80099939B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9F939E61F2EB1AF0004AC10 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E91DF615200603D70099939B;
-			remoteInfo = ACBTokenFieldFramework;
-		};
-		E91DF622200603D80099939B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9F939E61F2EB1AF0004AC10 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9F939ED1F2EB1AF0004AC10;
-			remoteInfo = ACBTokenField;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		E91DF616200603D70099939B /* ACBTokenField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ACBTokenField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91DF618200603D70099939B /* ACBTokenFieldFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACBTokenFieldFramework.h; sourceTree = "<group>"; };
 		E91DF619200603D70099939B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E91DF61E200603D80099939B /* ACBTokenFieldFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACBTokenFieldFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91DF625200603D80099939B /* ACBTokenFieldFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBTokenFieldFrameworkTests.swift; sourceTree = "<group>"; };
 		E91DF627200603D80099939B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9856B9C203B8A63009EA867 /* ACBToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACBToken.swift; sourceTree = "<group>"; };
@@ -63,14 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E91DF61B200603D80099939B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E91DF61F200603D80099939B /* ACBTokenField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +132,6 @@
 			children = (
 				E9F939EE1F2EB1AF0004AC10 /* ACBTokenField.app */,
 				E91DF616200603D70099939B /* ACBTokenField.framework */,
-				E91DF61E200603D80099939B /* ACBTokenFieldFrameworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,25 +207,6 @@
 			productReference = E91DF616200603D70099939B /* ACBTokenField.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E91DF61D200603D80099939B /* ACBTokenFieldFrameworkTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E91DF633200603D80099939B /* Build configuration list for PBXNativeTarget "ACBTokenFieldFrameworkTests" */;
-			buildPhases = (
-				E91DF61A200603D80099939B /* Sources */,
-				E91DF61B200603D80099939B /* Frameworks */,
-				E91DF61C200603D80099939B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E91DF621200603D80099939B /* PBXTargetDependency */,
-				E91DF623200603D80099939B /* PBXTargetDependency */,
-			);
-			name = ACBTokenFieldFrameworkTests;
-			productName = ACBTokenFieldFrameworkTests;
-			productReference = E91DF61E200603D80099939B /* ACBTokenFieldFrameworkTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E9F939ED1F2EB1AF0004AC10 /* ACBTokenField */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9F939FD1F2EB1AF0004AC10 /* Build configuration list for PBXNativeTarget "ACBTokenField" */;
@@ -278,29 +230,26 @@
 		E9F939E61F2EB1AF0004AC10 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = akhil;
 				TargetAttributes = {
 					E91DF615200603D70099939B = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1540;
 						ProvisioningStyle = Automatic;
-					};
-					E91DF61D200603D80099939B = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = E9F939ED1F2EB1AF0004AC10;
 					};
 					E9F939ED1F2EB1AF0004AC10 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 1540;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = E9F939E91F2EB1AF0004AC10 /* Build configuration list for PBXProject "ACBTokenField" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -313,7 +262,6 @@
 			targets = (
 				E9F939ED1F2EB1AF0004AC10 /* ACBTokenField */,
 				E91DF615200603D70099939B /* ACBTokenFieldFramework */,
-				E91DF61D200603D80099939B /* ACBTokenFieldFrameworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -324,13 +272,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91DF6382006043B0099939B /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E91DF61C200603D80099939B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,14 +297,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E91DF61A200603D80099939B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E91DF626200603D80099939B /* ACBTokenFieldFrameworkTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9F939EA1F2EB1AF0004AC10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,19 +310,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E91DF621200603D80099939B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E91DF615200603D70099939B /* ACBTokenFieldFramework */;
-			targetProxy = E91DF620200603D80099939B /* PBXContainerItemProxy */;
-		};
-		E91DF623200603D80099939B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E9F939ED1F2EB1AF0004AC10 /* ACBTokenField */;
-			targetProxy = E91DF622200603D80099939B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E9F93A0A1F2ED34F0004AC10 /* Main.storyboard */ = {
@@ -418,20 +338,28 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ACBTokenFieldFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.akhil.ACBTokenFieldFramework;
 				PRODUCT_NAME = ACBTokenField;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -452,72 +380,30 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ACBTokenFieldFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.akhil.ACBTokenFieldFramework;
 				PRODUCT_NAME = ACBTokenField;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E91DF62F200603D80099939B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ACBTokenFieldFrameworkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akhil.ACBTokenFieldFrameworkTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ACBTokenField.app/Contents/MacOS/ACBTokenField";
-			};
-			name = Debug;
-		};
-		E91DF630200603D80099939B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ACBTokenFieldFrameworkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akhil.ACBTokenFieldFrameworkTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ACBTokenField.app/Contents/MacOS/ACBTokenField";
 			};
 			name = Release;
 		};
@@ -525,6 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -546,6 +433,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -553,9 +441,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -584,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -605,6 +496,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -612,9 +504,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -626,7 +520,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -636,12 +531,18 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ACBTokenField/Resources/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.akhil.ACBTokenField;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -650,12 +551,18 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ACBTokenField/Resources/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.akhil.ACBTokenField;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -667,15 +574,6 @@
 			buildConfigurations = (
 				E91DF62D200603D80099939B /* Debug */,
 				E91DF62E200603D80099939B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E91DF633200603D80099939B /* Build configuration list for PBXNativeTarget "ACBTokenFieldFrameworkTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E91DF62F200603D80099939B /* Debug */,
-				E91DF630200603D80099939B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
